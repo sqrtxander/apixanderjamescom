@@ -164,7 +164,7 @@ ORDER BY s.id, c.id
         group = cursor.fetchall()
         group = [{"clue": a, "answer": b} for a, b in group]
 
-        round |= {"questions": group}
+        round |= {"clues": group}
 
     result |= {"consonants": consonants}
 
