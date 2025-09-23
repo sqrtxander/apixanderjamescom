@@ -3,8 +3,8 @@ from flask_cors import CORS
 import sqlite3
 import json
 
-PR_DB_PATH = "./purely-relate.db"
-CL_DB_PATH = "./chain-links.db"
+PR_DB_PATH = "./purelyrelate.db"
+CL_DB_PATH = "./chainlinks.db"
 
 app = Flask(__name__)
 CORS(app)
@@ -27,7 +27,7 @@ def close_db(error):
         g.sqlite3_db.close()
 
 
-@app.route("/purely-relate/episodes", methods=["GET"])
+@app.route("/purelyrelate/episodes", methods=["GET"])
 def getPREpisodes():
     db = get_db(PR_DB_PATH)
     sql = "SELECT id, title FROM matches"
@@ -39,7 +39,7 @@ def getPREpisodes():
     return jsonify(episodes)
 
 
-@app.route("/purely-relate/<int:episode_id>", methods=["GET"])
+@app.route("/purelyrelate/<int:episode_id>", methods=["GET"])
 def getPREpisodeContents(episode_id):
     db = get_db(PR_DB_PATH)
     result = {}
@@ -171,7 +171,7 @@ ORDER BY s.id, c.id
     return jsonify(result)
 
 
-@app.route("/chain-links/puzzles", methods=["GET"])
+@app.route("/chainlinks/puzzles", methods=["GET"])
 def getCLPuzzles():
     db = get_db(CL_DB_PATH)
     sql = "SELECT id FROM puzzles"
@@ -183,7 +183,7 @@ def getCLPuzzles():
     return jsonify(episodes)
 
 
-@app.route("/chain-links/<int:puzzle_id>", methods=["GET"])
+@app.route("/chainlinks/<int:puzzle_id>", methods=["GET"])
 def getCLPuzzleContents(puzzle_id):
     db = get_db(CL_DB_PATH)
     result = {}
